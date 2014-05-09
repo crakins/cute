@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-		<h1>Hello, {{user.nickname}}!</h1>
-		<p><iframe src='{{images[1]}}' /></p>
-		<p>{{images[1]}}</p>
+		<h1>cute, super cute!</h1>
+		<h2>Pictures of {{searchTerm}}</h2>
+		<p><img src='{{images}}' /></p>
+		<p>Photo credit: {{images}}</p>
 {% endblock %}

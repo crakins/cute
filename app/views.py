@@ -10,7 +10,7 @@ def index():
 	searchTerm = "cute puppy"
 	images = get_urls(searchTerm)
 	maxNumber = len(images)
-	randUrl = random.randint(-1, maxNumber)
+	randUrl = random.randint(0, maxNumber)
 	return render_template('index.html', 
 		title = 'Home', 
 		user = user,

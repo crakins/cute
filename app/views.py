@@ -7,12 +7,27 @@ import random
 @app.route('/index')
 def index():
 	user = { 'nickname': 'Ryan' } # fake user
-	searchTerm = "cute puppy"
+	searchTerm = "super cute"
 	images = get_urls(searchTerm)
 	maxNumber = len(images)
-	randUrl = random.randint(0, maxNumber)
+	randUrl = random.randint(0, maxNumber-1)
 	return render_template('index.html', 
 		title = 'Home', 
 		user = user,
 		searchTerm = searchTerm,
-		images = images[randUrl])
+		images = images[randUrl],
+		randUrl = randUrl)
+
+@app.route('/<animal>')
+def indexAnimal(animal):
+	user = { 'nickname': 'Ryan' } # fake user
+	searchTerm = "cute " + animal
+	images = get_urls(searchTerm)
+	maxNumber = len(images)
+	randUrl = random.randint(0, maxNumber-1)
+	return render_template('index.html', 
+		title = 'Home', 
+		user = user,
+		searchTerm = searchTerm,
+		images = images[randUrl],
+		randUrl = randUrl)

@@ -1,6 +1,7 @@
 from flask import render_template, flash, redirect
 from app import app
-from scrape import get_urls
+# from scrape import get_urls
+from pix import get_urls
 import random
 from processImages import storeImages
 
@@ -11,13 +12,20 @@ def index():
 	searchTerm = "cute animals"
 	images = get_urls(searchTerm)
 	maxNumber = len(images)
-	randUrl = random.randint(0, maxNumber-1)
-	return render_template('index.html', 
-		title = 'Home', 
-		user = user,
-		searchTerm = searchTerm,
-		images = images[randUrl],
-		randUrl = randUrl)
+	if maxNumber > 0:
+	    randUrl = random.randint(0, maxNumber-1)
+	    return render_template('index.html', 
+		    title = 'Home', 
+		    user = user,
+		    searchTerm = searchTerm,
+		    images = images[randUrl],
+		    randUrl = randUrl)
+	else:
+	    return render_template('index.html',
+	        title = 'Home',
+	        user = user,
+	        searchTerm = searchTerm,
+	        images = 'Sorry no pictures')
 
 @app.route('/<animal>')
 def indexAnimal(animal):
@@ -25,13 +33,20 @@ def indexAnimal(animal):
 	searchTerm = "cute " + animal
 	images = get_urls(searchTerm)
 	maxNumber = len(images)
-	randUrl = random.randint(0, maxNumber-1)
-	return render_template('index.html', 
-		title = 'Home', 
-		user = user,
-		searchTerm = searchTerm,
-		images = images[randUrl],
-		randUrl = randUrl)
+	if maxNumber > 0:
+	    randUrl = random.randint(0, maxNumber-1)
+	    return render_template('index.html', 
+		    title = 'Home', 
+		    user = user,
+		    searchTerm = searchTerm,
+		    images = images[randUrl],
+		    randUrl = randUrl)
+	else:
+	    return render_template('index.html',
+	        title = 'Home',
+	        user = user,
+	        searchTerm = searchTerm,
+	        images = 'Sorry no pictures')
 
 @app.route('/process/<keyword>')
 def process(keyword):

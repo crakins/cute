@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect
+from flask import render_template, flash, redirect, request
 from app import app
 # from scrape import get_urls
 from pix import get_urls
@@ -8,24 +8,30 @@ from processImages import storeImages
 @app.route('/')
 @app.route('/index')
 def index():
-	user = { 'nickname': 'Ryan' } # fake user
-	searchTerm = "cute animals"
-	images = get_urls(searchTerm)
-	maxNumber = len(images)
-	if maxNumber > 0:
-	    randUrl = random.randint(0, maxNumber-1)
-	    return render_template('index.html', 
-		    title = 'Home', 
-		    user = user,
-		    searchTerm = searchTerm,
-		    images = images[randUrl],
-		    randUrl = randUrl)
-	else:
-	    return render_template('index.html',
-	        title = 'Home',
-	        user = user,
-	        searchTerm = searchTerm,
-	        images = 'Sorry no pictures')
+    search_query = request.args.get('q')
+    if search_query:
+       searchTerm = "cute %s" % search_query
+    else:
+        searchTerm = "cute animals"
+    user = { 'nickname': 'Ryan' } # fake user
+    images = get_urls(searchTerm)
+    maxNumber = len(images)
+    if maxNumber > 0:
+        randUrl = random.randint(0, maxNumber-1)
+        return render_template('index.html', 
+            title = 'Home', 
+            user = user,
+            searchTerm = searchTerm,
+            search = search_query,
+            images = images[randUrl],
+            randUrl = randUrl)
+    else:
+        return render_template('index.html',
+            title = 'Home',
+            user = user,
+            searchTerm = searchTerm,
+            search = search_query,
+            images = 'Sorry no pictures')
 
 @app.route('/<animal>')
 def indexAnimal(animal):

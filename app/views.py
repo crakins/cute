@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, request
 from app import app
 # from scrape import get_urls
-from pix import get_urls
+from pix import get_urls, get_all_urls_file, get_keyword_urls_file
 import random
 from processImages import storeImages
 
@@ -14,7 +14,9 @@ def index():
     else:
         searchTerm = "cute animals"
     user = { 'nickname': 'Ryan' } # fake user
-    images = get_urls(searchTerm)
+    # images = get_urls(searchTerm) # must change this, got locked out of API
+    # maybe read
+    images = get_all_urls_file()
     maxNumber = len(images)
     if maxNumber > 0:
         randUrl = random.randint(0, maxNumber-1)
@@ -37,7 +39,8 @@ def index():
 def indexAnimal(animal):
 	user = { 'nickname': 'Ryan' } # fake user
 	searchTerm = "cute " + animal
-	images = get_urls(searchTerm)
+	# images = get_urls(searchTerm) # must change this, got locked out of API
+	images = get_keyword_urls_file(searchTerm)
 	maxNumber = len(images)
 	if maxNumber > 0:
 	    randUrl = random.randint(0, maxNumber-1)

@@ -37,3 +37,15 @@ def get_urls(searchTerm):
         
     except URLError, e:
         return 'No images available'
+        
+def get_all_urls_file():
+    # open images.txt file
+    with open('images.txt', 'r') as f:
+        urls = f.readlines()
+    return urls
+
+def get_keyword_urls_file(searchTerm):
+    # open images.txt file
+    with open('images.txt', 'r') as f:
+        urls = f.readlines()
+    return urls

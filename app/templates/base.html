@@ -18,6 +18,9 @@
         <script src="{{ url_for('static', filename='js/jquery-1.11.0.min.js') }}" type="text/javascript"></script>
         <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
         {% block extra_scripts %}{% endblock %}
+        <script type="text/css">
+            body { background: yellow !important; }
+        </script>
         </head>
     <body>
     <div class="navbar navbar-default navbar-static-top" role="navigation">
@@ -44,9 +47,9 @@
     </div>
         
         <div>
+        <a href="/kitty"><img src="{{ url_for('static', filename='images/kitty_icon.png') }}"  /></a> | 
+        <a href="/dog"><img src="{{ url_for('static', filename='images/elephant_icon.png') }}"  /></a> | 
         <a href="/train">Choo-Choo</a> | 
-        <a href="/kitty"><img src="../static/images/kitty_icon.png" /></a> | 
-        <a href="/dog">Dog</a> | 
         <a href="/bear">Bear</a> | 
         <a href="/dragon">Dragon</a></div>
         <hr>

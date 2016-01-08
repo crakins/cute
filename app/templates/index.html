@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 		<h2>Pictures of {{searchTerm}}</h2>
-		<p><img src='{{images}}' /></p>
+		<p><img src="{{images}}" /></p>
 		<p>Photo credit: {{images}}</p>
-		<p>randUrl: {{randUrl}}</p>
+		<p>randUrl: {{randUrl}} of {{countImages}}</p>
 		<!-- <p><a href='/process/kitty'>process images</a></p> -->
 {% endblock %}

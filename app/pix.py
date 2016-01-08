@@ -7,6 +7,10 @@ import json
 API_KEY = '1838068-18ce42d18bb425f5d9e026c14'
 # iType = 'photo'
 
+def get_local_image():
+    # get a random image
+    return ""
+
 def get_urls(searchTerm):
 
     query = 'cute %s' % searchTerm

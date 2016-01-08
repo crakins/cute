@@ -23,6 +23,8 @@ class Image(db.Model):
 	url = db.Column(db.String(500), index = True, unique = True)
 	ban = db.Column(db.SmallInteger, default = OKAY)
 	cutes = db.Column(db.Integer, default = 0)
+	file_name = db.Column(db.String(500), index = True, unique = True)
+	test = db.Column(db.Integer, default = 0)
 
 class Category(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
